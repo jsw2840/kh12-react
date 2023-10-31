@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import lionImage from '../assets/images/lion.gif';
+import dogImage from '../assets/images/dog.jpg';
 
 function Exam02() {
     //이 화면의 상태(state)는 한 개이다.
@@ -23,7 +23,7 @@ function Exam02() {
             <button onClick={()=>setSize(200)}>기본</button>
             <button onClick={()=>setSize(300)}>크게</button>
             <br/>
-            <img src={lionImage} width={size} height={size}/>
+            <img src={dogImage} width={size} height={size}/>
         </>
     );
 }

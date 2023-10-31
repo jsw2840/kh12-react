@@ -20,17 +20,17 @@ const Exam07 =()=>{
         <h1>회원가입</h1>
         <div className="row mt-3">
         아이디
-        <input className="form-control" value={member.memberId} onChange={changeMember}/>
+        <input className="form-control" name="memberId" value={member.memberId} onChange={changeMember}/>
         </div>
 
         <div className="row mt-3">
         비밀번호
-        <input className="form-control" value={member.memberPw} onChange={changeMember}/>
+        <input className="form-control" name="memberPw" value={member.memberPw} onChange={changeMember}/>
         </div>
 
         <div className="row mt-3">
         비밀번호 확인
-        <input className="form-control" value={member.memberPwRe} onChange={changeMember}/>
+        <input className="form-control" name="memberPwRe" value={member.memberPwRe} onChange={changeMember}/>
         </div>
 
         <div className="row text-end">
