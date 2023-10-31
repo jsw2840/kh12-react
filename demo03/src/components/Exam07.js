@@ -58,24 +58,33 @@ const Exam07 = ()=>{
                     <div className="row mt-4">
                         <div className="col">
                             <label className="form-label">아이디</label>
-                            <input type="text" name="memberId" className="form-control"
-                                    value={member.memberId} onChange={changeMember}/>
+                            <input type="text" name="memberId"
+                                 className={`form-control ${result.memberId ? 'is-valid':'is-invalid'}`}
+                                value={member.memberId} onChange={changeMember}/>
+                        <div className="valid-feedback">와와bb</div>
+                        <div className="invalid-feedback">우우pp</div>
                         </div>
                     </div>
 
                     <div className="row mt-4">
                         <div className="col">
                             <label className="form-label">비밀번호</label>
-                            <input type="password" name="memberPw" className="form-control"
+                            <input type="password" name="memberPw"
+                                     className={`form-control ${result.memberPw ? 'is-valid' : 'is-invalid'}`}
                                     value={member.memberPw} onChange={changeMember}/>
+                                    <div className="valid-feedback">와와bb</div>
+                        <div className="invalid-feedback">우우pp</div>
                         </div>
                     </div>
 
                     <div className="row mt-4">
                         <div className="col">
                             <label className="form-label">비밀번호 확인</label>
-                            <input type="password" name="memberPwRe" className="form-control"
+                            <input type="password" name="memberPwRe"
+                                 className={`form-control ${result.memberPwRe ? 'is-valid' : 'is-invalid'}`}
                                     value={member.memberPwRe} onChange={changeMember}/>
+                                    <div className="valid-feedback">와와bb</div>
+                        <div className="invalid-feedback">우우pp</div>
                         </div>
                     </div>
 
@@ -83,7 +92,10 @@ const Exam07 = ()=>{
 
                     <div className="row mt-4">
                         <div className="col">
-                            <button type="button" className="btn btn-success w-100">회원가입</button>
+                            <button type="button" className="btn btn-success w-100"
+                             disabled={!(result.memberId && result.memberPw
+                                         && result.memberPwRe)}>회원가입</button>
+                    
                         </div>
                     </div>
 
