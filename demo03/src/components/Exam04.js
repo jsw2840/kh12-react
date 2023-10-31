@@ -12,7 +12,7 @@ function Exam04() {
     return (
         <>
             <h1>주말에 뭐하세요?</h1>
-            <textarea rows={10} onChange={text} />
+            <textarea maxLength="1000" rows={10} cols={100} onChange={text} />
             <br />
             {count}/1000 bytes
         </>
