@@ -23,7 +23,6 @@ const Exam10 = ()=>{
         }));
     }, []);
 
-
     //줄을 수정상태로 변경하는 함수
     //- 이 함수를 실행하려면 최소한 itemNo는 알아야 한다
     //- 함수를 호출할 때 이벤트정보(e) 대신 아이템정보(item)을 전달하여 처리하도록 처리
@@ -58,7 +57,7 @@ const Exam10 = ()=>{
         });
         setItems(newItems);
     };
-
+   
     //취소 버튼을 누른 경우 실행할 함수
     //- backup에 들어있는 target과 번호가 같은 데이터를 items의 target과 같은 번호에 덮어쓰기
     const cancelItem = (target) => {
@@ -108,6 +107,17 @@ const Exam10 = ()=>{
         setItems(newItems);
     };
         
+     //아이템 삭제
+    //-배열에서 항목을 삭제할 떄도 filter를 사용한다
+    const deleteItem = (target)=>{
+        //아이템 삭제
+        const newItems = items.filter(item=>item.itemNo !== target.itemNo);
+        setItems(newItems);
+
+        //백업 삭제
+        const newBackup = backup.filter(item=>item.itemNo !== target.itemNo);
+        setBackup(newBackup);
+    };
 
     return (
         <div className="container-fluid">
@@ -165,8 +175,9 @@ const Exam10 = ()=>{
                                             <td>{item.itemPrice}원</td>
                                             <td>{item.itemType}</td>
                                             <td>
-                                                <button className="btn btn-sm btn-secondary" onClick={e=>changeToEdit(item)}>집가자</button>
-                                                <button className="btn btn-sm btn-warning ms-1">또삐형</button>
+                                                <button className="btn btn-sm btn-secondary" onClick={e=>changeToEdit(item)}>수정</button>
+                                                <button className="btn btn-sm btn-warning ms-1"
+                                                        onClick={e=>deleteItem(item)}>삭제</button>
                                             </td>
                                         </tr>
 
