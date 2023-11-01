@@ -165,8 +165,8 @@ const Exam10 = ()=>{
                                             <td>{item.itemPrice}원</td>
                                             <td>{item.itemType}</td>
                                             <td>
-                                                <button className="btn btn-sm btn-secondary" onClick={e=>changeToEdit(item)}>수정</button>
-                                                <button className="btn btn-sm btn-warning ms-1">삭제</button>
+                                                <button className="btn btn-sm btn-secondary" onClick={e=>changeToEdit(item)}>집가자</button>
+                                                <button className="btn btn-sm btn-warning ms-1">또삐형</button>
                                             </td>
                                         </tr>
 
