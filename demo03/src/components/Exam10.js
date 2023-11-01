@@ -12,7 +12,43 @@ const Exam10 = ()=>{
         {itemNo:8, itemName:"오징어땅콩", itemPrice:3500, itemType:"식품", edit:false},
         {itemNo:9, itemName:"신라면", itemPrice:1500, itemType:"식품", edit:false},
         {itemNo:10, itemName:"하리보젤리", itemPrice:5500, itemType:"식품", edit:false}
+
     ]);
+    
+    //줄을 수정상태로 변경하는 함수
+    //이 함수를 실행하려면 최소한 itemNo는 알아야한다
+    //함수를 호출할 때 이벤트 정보(e)대신 아이템정보(item)을 전달하여 처리하도록 처리
+
+    const changeToEdit = (target)=>{
+        
+        const newItems = items.map(item=>{
+            if(item.itemNo === target.itemNo){ //target
+                return {
+                    ...item,  //다른건 그대로 둬도
+                    edit:true //edit 을 true로 바꿔라
+                };
+            }
+            return item; //나머지는 현상유지
+        });
+
+        setItems(newItems);
+    };
+
+    //줄의 데이터를 변경하는 함수
+    //-어떤 아이템인지(target)와 무라고 입력했는지(e)를 알아야 한다
+    const changeItem = (target,e)=>{
+        const newItems = items.map(item=>{
+            if(item.itemNo === target.itemNo){//같은 번호를 발견한다면
+                return{
+                    ...item,//나머지 정보는 그대로 두고
+                    [e.target.name] : e.target.value//입력창의 이름에 해당하는 필드값을 입력값으로 바꿔라
+                }
+            }
+            return item;
+        });
+        setItems(newItems);
+    };
+        
 
     return (
         <div className="container-fluid">
@@ -25,7 +61,7 @@ const Exam10 = ()=>{
 
                     <div className="row mt-4">
                         <div className="col text-end">
-                            <button type="button" className="btn btn-warning">추가</button>
+                            <button type="button" className="btn btn-outline-warning">추가</button>
                         </div>
                     </div>
 
@@ -34,34 +70,43 @@ const Exam10 = ()=>{
 
                             <table class="table table-hover" data-bs-theme="light">
                                 <thead>
-                                    <tr class="table-warning">
+                                    <tr class="table-warning text-center">
                                         <th>번호</th>
                                         <th>상품명</th>
                                         <th>판매가</th>
                                         <th>분류</th>
+                                        <th>상태</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {items.map((item,index)=>(
                                         item.edit ? (
-                                            <tr key={item.itemNo} className="table">
+                                            <tr key={item.itemNo} className="table text-center">
                                             <td>{item.itemNo}</td>
                                             <td>
-                                                <input type="text" value={item.itemName}/>    
+                                                <input className="form-control" type="text" name="itemName" value={item.itemName} onChange={e=>changeItem(item,e)}/>    
+                                            </td>
+                                            <td> 
+                                                <input className="form-control" type="text" name="itemPrice" value={item.itemPrice} onChange={e=>changeItem(item,e)}/> 
                                             </td>
                                             <td>
-                                                <input type="text" value={item.itemPrice}/> 
+                                                <input className="form-control" type="text" name="itemType" value={item.itemType} onChange={e=>changeItem(item,e)}/>     
                                             </td>
                                             <td>
-                                                <input type="text" value={item.itemType}/>     
+                                                <button className="btn btn-sm btn-secondary">취소</button>
+                                                <button className="btn btn-sm btn-warning ms-1">완료</button>
                                             </td>
                                         </tr>
                                         ) : (
-                                            <tr key={item.itemNo} className="table">
+                                            <tr key={item.itemNo} className="table text-center">
                                             <td>{item.itemNo}</td>
                                             <td>{item.itemName}</td>
-                                            <td>{item.itemPrice}</td>
+                                            <td>{item.itemPrice}원</td>
                                             <td>{item.itemType}</td>
+                                            <td>
+                                                <button className="btn btn-sm btn-secondary" onClick={e=>changeToEdit(item)}>수정</button>
+                                                <button className="btn btn-sm btn-warning ms-1">삭제</button>
+                                            </td>
                                         </tr>
 
                                         )
