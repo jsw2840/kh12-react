@@ -6,6 +6,7 @@ import { Modal } from 'bootstrap/dist/js/bootstrap.esm';
 import Jumbotron from './components/Jumbotron';
 
 function App() {
+  //목록을 위한 state
   const [todoList, setTodoList] = useState([
     { no: 1, title: "학원가기", type: "공부", edit:false},
     { no: 2, title: "영어단어외우기", type: "공부", edit:false },
@@ -13,8 +14,9 @@ function App() {
     { no: 4, title: "친구만나기", type: "일상", edit:false },
     { no: 5, title: "집에가기", type: "일상", edit:false }
 ]);
-
+//등록을 위한 state
 const [backup, setBackup] = useState([]); 
+//수정을 위한state
 const [data, setData] = useState({
     title: "",
     type: ""
