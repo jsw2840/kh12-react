@@ -180,10 +180,11 @@ const Exam10 = ()=>{
             itemType:""
         });
 
-        //모달 닫기
+        //모달닫기
         closeModal();
      };
-     
+
+
      //모달창 취소버튼
      const cancelAddItem = ()=>{
         //입력창 초기화
@@ -193,7 +194,7 @@ const Exam10 = ()=>{
             itemType:""
         });
 
-        //모달 닫기
+        //모달닫기
         closeModal();
      };
      
@@ -295,7 +296,8 @@ const Exam10 = ()=>{
             </div>
 
             {/*Modal*/}
-            <div className="modal fade" ref={bsModal} id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" ref={bsModal} id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                data-bs-backdrop="static" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -316,16 +318,19 @@ const Exam10 = ()=>{
                                     <option>주류</option>
                                     <option>기타</option>
                                 </select>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="modal-footer">
-                    {/* 자동으로 닫히게 하는 버튼 */}
+                    {/*자동으로 닫히게 하는 버튼 (기록이 남아있음)
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 
-                    {/* 수동으로 원하는 로직을 추가하여 닫히게 하는 버튼 */}
-                    <button type="button" className="btn btn-secondary" onClick={cancelAddItem}>취소</button>
-                                <button type="button" className="btn btn-warning" onClick={addItem}>등록</button>
+                        수동으로 원하는 로직을 추가하여 닫히게 하는 버튼
+                    */}
+                    <button type="button" className="btn btn-secondary" onClick={cancelAddItem}>닫기</button>
+                    <button type="button" className="btn btn-warning" onClick={addItem}>등록</button>
                 </div>
                 </div>
             </div>
