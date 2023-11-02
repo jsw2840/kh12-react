@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useRef, useEffect } from "react";
 import { FaXmark } from "react-icons/fa6";
+import { FaPencilAlt } from "react-icons/fa";
 import { Modal } from 'bootstrap/dist/js/bootstrap.esm';
 import Jumbotron from './components/Jumbotron';
 
@@ -235,18 +236,22 @@ const closeModal = () => {
                                         </tr>
                                         ) : (
                                             <tr key={todo.no}>
-                                            <td><FaXmark className="text-danger"/></td>
+                                            <td><input type='checkBox'/></td>
                                             <td>{todo.no}</td>
                                             <td>{todo.title}</td>
-                                            <td>{todo.type}</td>
+                                            <td>
+                                              <span className="badge bg-primary me-2">
+                                              {todo.type}
+                                              </span>
+                                            </td>
                                             <td>
                                             <button className="btn btn-sm btn-secondary me-1"
-                                                        onClick={e=> changeToEdit(todo)}>수정</button>
+                                                        onClick={e=> changeToEdit(todo)}><FaPencilAlt className="text-danger"/></button>
                                                     {/* 함수를 부를 수 있게 하나 주고, 필요한 코드를 작성한다
                                                             이 반복문에서 사용한 item이라는 객체를 넘기겠다
                                                         */}
                                                     <button className="btn btn-sm btn-warning"
-                                                       onClick={e=>deleteTodo(todo)} >삭제</button>
+                                                       onClick={e=>deleteTodo(todo)} ><FaXmark className="text-danger"/></button>
                                             </td>
                                             </tr>
                                         )
@@ -279,7 +284,11 @@ const closeModal = () => {
                             <div className="row mt-2">
                                 <div className="col">
                                     <label className="form-label">목표</label>
-                                    <input name="type" className="form-control" value={data.type} onChange={changeData} />
+                                    <select className="form-select" value={data.type} onChange={changeData} >
+                                    <option>공부</option>
+                                    <option>운동</option>
+                                    <option>일상</option>
+                                    </select>
                                 </div>
                             </div>
                         
