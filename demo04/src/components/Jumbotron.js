@@ -2,7 +2,7 @@
 //-이를 통해 상위 화면에서 전달되는 데이터를 이용한 프로그래밍이 가능
 const Jumbotron = (props)=>{
 return(
-    <div className='P-4 text-light bg-dark rounded mt-4'>
+    <div className='p-4 text-light bg-dark rounded mt-4'>
             <h1>{props.title}</h1>
             <p>{props.content}</p>
     </div>
