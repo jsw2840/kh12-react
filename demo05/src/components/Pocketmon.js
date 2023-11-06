@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaPencilAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const Pocketmon = (props) => {
     const [pocketmonList, setPocketmonList] = useState([]);
@@ -33,7 +35,8 @@ const Pocketmon = (props) => {
                         <th>번호</th>
                         <th>이름</th>
                         <th>속성</th>
-                        <th></th>
+                        <th>수정</th>
+                        <th>삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +45,8 @@ const Pocketmon = (props) => {
                             <td>{pocketmon.no}</td>
                             <td>{pocketmon.name}</td>
                             <td>{pocketmon.type}</td>
-                            <td></td>
+                            <td><FaPencilAlt/></td>
+                            <td><FaRegTrashAlt/></td>
                         </tr>
                     ))}
                 </tbody>

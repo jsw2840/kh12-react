@@ -56,10 +56,10 @@ const Book = (props)=>{
                             <td className="pc-only">{book.bookPageCount}</td>
                             <td className="pc-only">{book.bookGenre}</td>
                             <td>
-                            <p><FaPencilAlt/></p>
+                            <FaPencilAlt/>
                             </td>      
                             <td>                   
-                            <p><FaRegTrashAlt/></p>                           
+                            <FaRegTrashAlt/>                        
                              </td>
                         </tr>
                     ))}
