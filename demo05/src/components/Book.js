@@ -6,7 +6,7 @@ import "./Book.css";
 const Book = (props)=>{
     const [bookList, setBookList] = useState([]);
 
-    useEffect(()=>{
+    const loadBook = ()=>{
         axios({
             url:"http://localhost:8080/book/",
             method:"get",
@@ -17,7 +17,27 @@ const Book = (props)=>{
         .catch(err=>{
             window.alert("통신 오류 발생");
         });
+    };
+
+    useEffect(()=>{
+      loadBook();
     }, []);
+
+    const deleteBook = (book) => {
+        const choice = window.confirm("정말 삭제하시겠습니까?");
+        if(choice === false) return;
+
+        axios({
+            url:`http://localhost:8080/book/${book.bookId}`,
+            method:"delete",
+        })
+        .then(response=>{
+            loadBook();//목록 갱신
+        })
+        .catch(err=>{
+            window.alert("통신 오류 발생");
+        });
+    };
     return(
         <>
             <div className="row">
@@ -32,7 +52,7 @@ const Book = (props)=>{
             <table className="table table-hover text-center">
                 <thead>
                     <tr className="table-warning text-center">
-                        <th className="pc-only">도서번호</th>
+                        <th className="pc-only">번호</th>
                         <th>도서제목</th>
                         <th>저자</th>
                         <th className="pc-only">출간일</th>
@@ -59,7 +79,8 @@ const Book = (props)=>{
                             <FaPencilAlt className="text-warning"/>
                             </td>      
                             <td>                   
-                            <FaRegTrashAlt className="text-danger"/>                        
+                            <FaRegTrashAlt className="text-danger"
+                                onClick={e=>deleteBook(book)}/>                        
                              </td>
                         </tr>
                     ))}
