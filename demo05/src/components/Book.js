@@ -10,7 +10,7 @@ const Book = (props) => {
 
     const loadBook = () => {
         axios({
-            url: "http://localhost:8080/book/",
+            url: `${process.env.REACT_APP_REST_API_URL}/book/`,
             method: "get",
         })
             .then(response => {
@@ -30,7 +30,7 @@ const Book = (props) => {
         if (choice === false) return;
 
         axios({
-            url: `http://localhost:8080/book/${book.bookId}`,
+            url: `${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
             method: "delete",
         })
             .then(response => {
@@ -75,7 +75,7 @@ const Book = (props) => {
     //     //입력값 검사 후 차단 코드 추가
 
     //     axios({
-    //         url:"http://localhost:8080/book/",
+    //         url:`${process.env.REACT_APP_REST_API_URL}/book/`,
     //         method:"post",
     //         data:book
     //     }).then(response=>{//성공했다면
@@ -88,7 +88,7 @@ const Book = (props) => {
     //-비동기 작업을 동기화된 코드로 작성할 수 있다
     const saveBook = async()=>{
         const response = await axios({
-            url:"http://localhost:8080/book/",
+            url:`${process.env.REACT_APP_REST_API_URL}/book/`,
             method:"post",
             data:book
         });
@@ -104,7 +104,7 @@ const Book = (props) => {
         openModal();
     };
 
-    //도서 수정 처리
+    // //도서 수정 처리
     // const updateBook = () =>{
     //     //검사 후 차단 처리
 
@@ -112,7 +112,7 @@ const Book = (props) => {
     //     bookPublicationDate,bookPublisher,bookPrice,
     //     bookPageCount,bookGenre}=book;
     //     axios({
-    //         url:`http://localhost:8080/book/${book.bookId}`,
+    //         url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
     //         method:"put",
     //         data:{
     //             bookTitle : bookTitle, bookAuthor : bookAuthor,
@@ -127,19 +127,13 @@ const Book = (props) => {
     //     })
     //     .catch(err=>{});
     // };
+     //도서 수정 처리
     const updateBook= async()=>{
-        const {bookId,bookTitle,bookAuthor,
-                bookPublicationDate,bookPublisher,bookPrice,
-                bookPageCount,bookGenre}=book;
+        //검사 후 차단 처리
         const response = await axios({
-            url:`http://localhost:8080/book/${book.bookId}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
             method:"put",
-            data:{
-                    bookTitle : bookTitle, bookAuthor : bookAuthor,
-                    bookPublicationDate : bookPublicationDate,
-                    bookPublisher : bookPublisher, bookPrice : bookPrice,
-                    bookPageCount : bookPageCount, bookGenre : bookGenre
-                 }
+            data:{...book}
         });
         loadBook();//목록을 갱신하고
         closeModal();//모달을 닫아라

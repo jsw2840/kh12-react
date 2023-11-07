@@ -11,7 +11,7 @@ const Pocketmon = (props)=>{
     //서버에서 pocketmon list를 불러와서 state에 설정하는 코드
     const loadPocketmon = ()=>{
         axios({
-            url:"http://localhost:8080/pocketmon/",
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/`,
             method:"get"
         })
         .then(response=>{
@@ -33,7 +33,7 @@ const Pocketmon = (props)=>{
 
         //axios({옵션}).then(성공시 실행할 함수).catch(실패시 실행할 함수);
         axios({
-            url:`http://localhost:8080/pocketmon/${pocketmon.no}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/${pocketmon.no}`,
             method:"delete"
         })
         .then(response=>{
@@ -73,7 +73,7 @@ const Pocketmon = (props)=>{
         //입력값 검사 후 차단 코드 추가
 
         axios({
-            url:"http://localhost:8080/pocketmon/",
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/`,
             method:"post",
             data:pocketmon
         }).then(response=>{//성공했다면
@@ -97,7 +97,7 @@ const Pocketmon = (props)=>{
 
         const {no,name,type}=pocketmon;
         axios({
-            url:`http://localhost:8080/pocketmon/${no}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/${no}`,
             method:"put",
             data:{
                 name : name,
